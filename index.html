@@ -1030,24 +1030,24 @@
             justify-content: space-between;
             align-items: center;
             padding-top: 10px;
+            width: 100%;
         }
 
-        .ig-text-clear-btn {
+        .ig-text-del-btn {
             background: rgba(255, 255, 255, 0.2);
             color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 6px 14px;
+            border: none;
+            padding: 8px 16px;
             border-radius: 20px;
             font-weight: bold;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             cursor: pointer;
             backdrop-filter: blur(4px);
-            transition: all 0.15s ease;
+            transition: background 0.15s ease;
         }
 
-        .ig-text-clear-btn:active {
-            background: var(--danger);
-            border-color: var(--danger);
+        .ig-text-del-btn:active {
+            background: rgba(217, 56, 56, 0.8);
         }
 
         .ig-text-done-btn {
@@ -1068,13 +1068,14 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            padding: 20px 0;
-            overflow-y: auto;
+            width: 100%;
+            padding: 10px 0;
         }
 
-        /* 無邊框展延 Textarea，完全無滾動條 */
+        /* 隱藏右側滾動條，輸入框隨文字自動向下展開 */
         #igTextInput {
             width: 100%;
+            height: auto;
             background: transparent !important;
             border: none !important;
             color: #ffffff !important;
@@ -1082,17 +1083,17 @@
             font-weight: bold !important;
             text-align: center;
             outline: none !important;
-            padding: 0 !important;
+            padding: 10px 0 !important;
             box-shadow: none !important;
             resize: none;
-            line-height: 1.4;
+            line-height: 1.35;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             overflow: hidden !important;
-            height: auto;
+            scrollbar-width: none !important;
         }
 
-        #igTextInput::placeholder {
-            color: rgba(255, 255, 255, 0.4);
+        #igTextInput::-webkit-scrollbar {
+            display: none !important;
         }
     </style>
 </head>
@@ -1363,7 +1364,7 @@
         </div>
     </details>
 
-    <!-- 🧹 新增區塊：打掃 (套用照片功能) -->
+    <!-- 🧹 打掃區塊 -->
     <details class="card" id="cardCleaning">
         <summary>
             <div class="summary-title-wrap">
@@ -1371,7 +1372,6 @@
             </div>
         </summary>
         <div class="card-content">
-            <!-- 📷 打掃多列圖片相機與預覽區域 -->
             <div id="photoRowsContainer_clean"></div>
             <button type="button" class="btn-add-photo-row" onclick="addPhotoRow('clean')">+</button>
         </div>
@@ -1501,19 +1501,19 @@
     </div>
 </div>
 
-<!-- ✍️ IG 風格多行文字編輯 Modal (含清空/刪除按鈕) -->
+<!-- ✍️ IG 風格多行文字編輯 Modal (頂部含清空文字按鈕) -->
 <div class="modal-overlay" id="igTextModal" onclick="closeIgTextOnOverlay(event)">
     <div class="ig-text-container">
         <div class="ig-text-header">
-            <button class="ig-text-clear-btn" onclick="clearAaTextModal()">🗑️ 清空刪除</button>
+            <button class="ig-text-del-btn" onclick="clearAaTextModal()">清空文字</button>
             <button class="ig-text-done-btn" onclick="confirmAaTextModal()">完成</button>
         </div>
         <div class="ig-text-body">
-            <textarea id="igTextInput" rows="1" placeholder="輸入標註文字..." autocomplete="off" spellcheck="false" oninput="autoResizeTextarea(this)"></textarea>
+            <textarea id="igTextInput" rows="1" placeholder="輸入標註文字..." autocomplete="off" spellcheck="false"></textarea>
         </div>
     </div>
 </div>
 
-<script src="script.min.js?v=1.2.1"></script>
+<script src="script.min.js?v=1.2.2"></script>
 </body>
 </html>
